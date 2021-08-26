@@ -19,7 +19,7 @@ button {
   text-decoration: none;
 }
 
-a:hover {
+a:hover:not(h1 > a) {
   display: inline-block;
   transform: scale(1.1);
   cursor: pointer;
@@ -111,6 +111,8 @@ a:visited,
   color: var(--color__primary);
 }
 
+h1 > a,
+h1 > a:visited,
 .color__primary--accent {
   color: var(--color__primary--accent);
 }

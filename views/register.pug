@@ -1,6 +1,8 @@
 extends layout 
 block content 
-    h1= title 
+    h1
+        a(href='/') Wizards Only
+    h2= title 
     form(action='' method='POST' class="form form__register form--post")
         label(for="username") username: 
         input(type='text' class="form__input" name='username' required='true' value=( typeof user === 'undefined' ? '' : user.username ) )
@@ -14,7 +16,9 @@ block content
         input(type="text" class="form__input" name='last_name' required='true' value=( typeof user === 'undefined' ? '' : user.last_name ) )
         label(for="email") email: 
         input(type="email" class="form__input" name='email' required='true' value=( typeof user === 'undefined' ? '' : user.email ) )
-        button(type='submit') register
+        div.form__controls
+            button(type="submit") register
+            a(href="/chat") cancel 
     if errors 
         ul 
             for error in errors 
