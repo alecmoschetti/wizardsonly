@@ -3,8 +3,8 @@ const express = require('express');
 const http = require('http');
 const path = require('path');
 const router = require('express').Router();
-const pino = require('pino-http');
-const logger = pino({prettyPrint: true});
+/* const pino = require('pino-http');
+const logger = pino({prettyPrint: true}); */
 const crypto = require('crypto');
 const session = require('express-session');
 const passport = require('passport');
@@ -127,7 +127,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 /* rest of middlewares */
-app.use(logger);
+// app.use(logger); removed for production deployment
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
