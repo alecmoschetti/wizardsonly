@@ -1,0 +1,19 @@
+extends layout 
+block content 
+    if user && user.membership && user.admin 
+        h3 you are already and admin my friend 💯
+    else if user && user.membership
+        h2 What's the admin password? 
+        form(action="" method="POST" class="form form--post")
+            label(for="admin_password") admin password: 
+            input(type="password" class="form__input" name="admin_password" required="true") 
+            div.form__controls
+                button(type="submit") submit
+                a(href="/chat") cancel 
+        if errors 
+            ul 
+                for error in errors 
+                    li
+                        p!= error.msg
+    else 
+        h3 sorry you don't have access to become an admin

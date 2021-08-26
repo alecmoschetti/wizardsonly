@@ -1,0 +1,19 @@
+extends layout
+block content
+  h1= title
+  section.landing
+    h5 Welcome to #{title}
+    if user
+      h2 howdy #{user.username}
+    nav.nav
+      ul
+        if user
+          li 
+            a(href="/logout") Log out
+        unless user
+          li
+            a(href="/login") Log in  
+          li
+            a(href='/register') Register
+        li
+          a(href="/chat") View chat 

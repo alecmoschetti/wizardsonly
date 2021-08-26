@@ -1,0 +1,17 @@
+extends layout 
+block content 
+    h1 Wizard City 
+    h2 New Message
+    form(action="" method="POST" class="form form--post form__message")
+        label(for="title") title:   
+        input(type="text" class="form__input" name="title" required="true" value=( typeof message === 'undefined' ? '' : message.title ) )
+        label(for="message") message: 
+        textarea(name="message" rows="10" cols="40" required="true") #{typeof message === 'undefined' ? '' : message.title}
+        div.form__controls
+            button(type="submit") post message
+            a(href="/chat") cancel 
+    if errors 
+        ul 
+        each error in errors 
+            li 
+                p!= error.msg

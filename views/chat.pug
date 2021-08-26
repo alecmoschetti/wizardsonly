@@ -1,0 +1,55 @@
+extends layout 
+block content 
+    header
+        h1= title 
+        main.chatroom
+            nav
+                if user
+                    h3 Welcome in 👋 
+                        span.color__primary #{user.username}
+                    ul.nav__ul
+                        li.nav__li
+                            a(href="/logout") log out 
+                        li.nav__li 
+                            a(href=`/${user._id}/message_form`) new message
+                        if (!user.membership)
+                            li.nav__li
+                                p join the secret club to see authors:
+                                a(href="/secretjoin") wizards only, fools 
+                else 
+                    h3 hey 
+                        span.color__primary anon 
+                    ul.nav__ul 
+                        li.nav__li   
+                            p write a message?
+                            a(href="/register") register
+                        li.nav__li
+                            p need to login?
+                            a(href="/login") login 
+            section.messages 
+                if messages 
+                    ul.messages__ul
+                        each message in messages 
+                            li.messages__li 
+                                div.messages__title 
+                                    h4 #{message.title}
+                                    if user 
+                                        if (message.userID == user._id)
+                                            h5 
+                                                span.color__primary you wrote this 🤡
+                                        else if user.membership
+                                            h5 user: #{message.user}
+                                        else 
+                                            h5 user: ????
+                                    else 
+                                        h5 user: ????
+                                div.messages__text 
+                                    p #{message.message} 
+                                div.messages__timestamp
+                                    span posted #{message.timestamp} 
+                                if user && user.admin
+                                    div.messages__admin 
+                                        a(href=`/delete_message/${message._id}`) delete post
+                        else 
+                            li 
+                                p there are no messages to display

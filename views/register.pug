@@ -1,0 +1,22 @@
+extends layout 
+block content 
+    h1= title 
+    form(action='' method='POST' class="form form__register form--post")
+        label(for="username") username: 
+        input(type='text' class="form__input" name='username' required='true' value=( typeof user === 'undefined' ? '' : user.username ) )
+        label(for="password") password: 
+        input(type='password' class="form__input" name='password' required='true' value=( typeof user === 'undefined' ? '' : user.password ) )
+        label(for="password_confirm") confirm password: 
+        input(type='password' class="form__input" name='password_confirm' required='true' value=( typeof user === 'undefined' ? '' : user.password ) )
+        label(for="first_name") first name: 
+        input(type="text" class="form__input" name='first_name' required='true' value=( typeof user === 'undefined' ? '' : user.first_name ) ) 
+        label(for="last_name") last name: 
+        input(type="text" class="form__input" name='last_name' required='true' value=( typeof user === 'undefined' ? '' : user.last_name ) )
+        label(for="email") email: 
+        input(type="email" class="form__input" name='email' required='true' value=( typeof user === 'undefined' ? '' : user.email ) )
+        button(type='submit') register
+    if errors 
+        ul 
+            for error in errors 
+                li
+                    p!= error.msg

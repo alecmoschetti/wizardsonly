@@ -1,0 +1,14 @@
+extends layout 
+block content 
+    h1 Wizards Only
+    h2= title
+    form(action="" method="POST" class="form form--post form__login")
+        label(for="username") username: 
+        input(type="text" name='username' required='true' class='form__input')
+        label(for="password") password: 
+        input(type="password" name='password' required='true' class='form__input') 
+        div.form__controls
+            button(type="submit") submit
+            a(href="/chat") cancel 
+    if error 
+        p #{error}
